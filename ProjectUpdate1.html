@@ -17,20 +17,13 @@
     </section>
 
     <section class="main-content">
-      <h2>
-<a id="Abstract" class="anchor" href="#Abstract" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Abstract</h2>
-<p>One of the biggest challenges faced by social media networks today is content moderation. This becomes a problem when potentially offensive content demonstrating violence, portraying sexually explicit images, advocating the use of weapons, etc are posted. We would like to create a model that can auto-moderate such content.
-</p>
-<p>The main objective of our project is to robustly classify and flag images as offensive or non-offensive. These images can be offensive due to the presence of violence, blood, weapons, sexual or other graphic content. Our model should be able to discriminate between such inappropriate images and other images. The classification decision made by the system should also be explainable to ensure that the system does not harbour any biases such as flagging all images with humans as offensive or tagging all images with red liquids as offensive. </p>
-<p>Our initial set of experiments was to build a classifier that could discriminate between offensive and inoffensive images. Using transfer learning with convolutional neural networks, we were able to achieve a 89% accuracy in our task.</p>
-
+  
 <p><center><img src="david.png" style="width:700px; height: 340px; " alt="something"></center></p>
 <p><center><img src="IMG_20191225_134848.jpg" style="width:700px; height: 250px; " alt="something"></center></p>
 
 <h2>
-<a id="Introduction" class="anchor" href="#Introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
-<p>Since the advent of social media, text, images and videos uploaded by users become visible and accessible to millions of other users. This becomes a problem when potentially offensive content demonstrating violence, portraying sexually explicit images, advocating the use of weapons, etc are posted. While there are human content reviewers, the volume of data produced automatically makes this a problem that needs to be solved at scale and is thus a good candidate to be solved using learning techniques. There are numerous issues with content moderation <a href="#ref2">[2]</a>. One of the main problems encountered with content moderation is that the process is both inconsistent and lacks transparency in terms of why a certain content is flagged. So, any robust automation system should be able to consistently capture the correct contents that need to be flagged and be able to clearly explain the reason for flagging of a certain content. This is important as we would like to be able to scale with ease (automated flagging) and at the same time take care to provide feedback (explainability) to the user uploading the content as well as to potentially any human moderators auditing the moderation results to help prevent cases where images get mislabelled as offensive, to investigate appeals from users, etc. In our system, we will be working with images to classify them as offensive or not while also explaining the reason behind the decision.
-</p>
+<a id="Project Summary" class="anchor" href="#Introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
+<p>Academic research should live or die by its own merits. However, human cognitive shortcuts have long believed to give undue advantage to particular institutions or researchers, sometimes blinding reviewers to errors of lack of rigor on their work. We investigate this imbalance by studying the spread of ideas across academic research networks using disease spread models adapted from epidemiology. We specifically focus on spread of ideas in the domain of Machine Learning (ML), a specialised area of research in Computer Science. We take the papers published in the year 2014 as our set of base “pathogens” and assess the network growth dynamics of idea spread amongst major ML conferences. We assess if ideas of the same calibre spread faster when originating from more prestigious institutions. We define data-centric measures for institutional prestige and idea quality and use both network-based simulation and statistical estimation to quantify how these factors affect idea propagation.</p>
 
 
 <h2>
@@ -39,97 +32,43 @@
 <p>We use Convolutional Neural Networks (CNNs) to perform a supervised binary classification of images into these two categories. Specifically, we perform feature extraction on the images in our dataset using transfer learning from the following pre-trained CNNs to build the binary classifier.
 </p>
 
-<ol>
-  <li>
-    Alexnet
-  </li>
-  <li>
-    Resnet-18
-  </li>
-  <li>
-    Inceptionv3
-  </li>
-  <li>
-    VGG16
-  </li>
-</ol>
-
-<p>
-We faced obstacles mainly in terms of the data, there are not many violence datasets available. We overcame this by sampling images from 1000 violent videos collected from Youtube<a href="#ref2">[4]</a> by extracting frames from these videos at a frame rate of 0.5, which is one frame every 0.5 seconds. However, it is worth noting that all frames of a violent video are not necessarily violent. Although this number is small, we expect it to affect our model in some way, and a future plan is to devise a method to overcome this. For example, a thumb rule that could be applied is to drop the first few frames and the last few frames of a violent video, assuming that the major chunk of violence occurs in the central part of a video.
-</p>
-<p>
-  In the second phase, we intend to use Grad-CAM<a href="#ref2">[1]</a>, which is a class-discriminative localization technique to generate visual explanations of the salience regions in the classified images that caused the images to be classified as offensive.
-</p>
-<p>
-  In performing the classification and generating visual explanations, we build what would form the basis (a minimum viable product version) of a content moderation system for offensive images. The system could help end-users / human moderators identify images to be flagged as well as ‘see’ what caused the image to be flagged as offensive. In further experiments, we aim to explore how augmenting an image and/or replacing certain parts of the image with specific offensive/non-offensive content changes the behaviour.
-</p>
-<p>
-  In our approach we had to make several design choices and judgement calls which we have addressed as follows :
-  <hr>
-  <ol start="1">
-    <li>
-      <em> Why are we approaching the problem as a classification problem and proposing the use of CNNs? What about object detection or any other techniques? </em>
-    </li>
-  </ol>
-  <hr>
-</p>
-<p>
-  We expect that there are latent factors involved in identifying an image as potentially offensive. For instance, in the case of differentiating between images portraying violence and other images, we may not always be able to look for objects (such as knives), or something specific like fire/blood, etc in the scene in a manner that is scalable. Classification of the images using a fine-tuned Convolutional Neural Network will help us identify the nuances involved in flagging the images. With the proposed approach, we should be able to understand and see the reasoning behind the same as well. We believe that such a model is more helpful in a real-world setting where there’s usually a combination of human content-reviewers, rule-based systems and ML systems working together. This could help reduce the  gap in understanding the reasons behind the machine’s take on a certain piece of content versus that of a human.
- <hr>
-  <ol start="2">
-    <li>
-      <em>
-      Why didn’t we formulate the problem as classifying videos, when we have a video dataset available?
-    </em>
-    </li>
-  </ol>
-<hr>
-</p>
-<p>
-  It is far more common to have offensive images  and we can always sample images from videos. Thus, formulating the problem as image classification has a much wider application scope.
-  <hr>
-  <ol start="3">
-    <li>
-      <em>
-      Of the two transfer learning approaches - fine-tuning and fixed feature extraction, why did we go with the latter?
-    </em>
-    </li>
-  </ol>
-  <hr>
-</p>
-<p>
-  Since our dataset is relatively small and does not have a variety of unique examples, it is not a good idea to fine-tune the ConvNet due to overfitting concerns. We expect higher-level features in the ConvNet to be relevant to this dataset as well. Hence, we are using the pre-trained network as a feature extractor and retrain the final layer for our classification problem. Thus, we derive predictions by updating only the final layer weights.
-  <hr>
-  <ol start="4">
-    <li>
-      <em>
-      Why did we use these 4 models to train the classifiers? 
-    </em>
-    </li>
-  </ol>
-  <hr>
-</p>
-<p>
-  Our intention is to compare the performance metrics of different classifiers and choose the best one going forward. AlexNet, VGG16, ResNet and InceptionV3 are all landmark ConvNet architectures trained on ImageNet and have proven to demonstrate a high accuracy. These networks have been used for other transfer learning tasks and perform well over a wide range of problems.
-  <hr>
-  <ol start="5">
-    <li>
-      <em>
-      Why did we choose this particular dataset?
-    </em>
-    </li>
-  </ol>
-  <hr>
-</p>
-<p>
-  This dataset contains a balanced mix of both violent and non-graphic videos from Youtube. The real-life violent content comes majorly from street fights. Apart from the violence videos, there are videos containing regular activities like eating and playing football. We intend to extract frames from each video and treat them as separate, labelled images. This wide range of activities in the dataset would help us make our model robust and take care of corner cases and false positives.
-</p>
-
 <h2>
-<a id="Experiments and Results" class="anchor" href="#Experiments and Results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Experiments and Results</h2>
+<a id="Results" class="anchor" href="#Results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
 <p>We trained our dataset using the four different classifiers mentioned above, all of them CNN architectures. </p>
 <p>We split the data set into 3 sets - train, validation and test. The classifiers are trained using a transfer learning approach where we extract features from pre-trained convnets and modify the final fully-connected layer to suit our data. The transfer learning is performed on  a ConvNet pretrained on ImageNet and backprop is done on only the final, modified layer and the weights from the pretrained layers are kept as is. Thus the rest of the ConvNet as a fixed feature extractor for the new dataset. </p>
 <p>Details about the data used: (Images are sampled from the videos from <a href="#ref2">[4]</a> via an offline process)</p>
+<table>
+  
+<h2>
+<a id="Resources" class="anchor" href="#Resources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resources</h2>
+<table>
+  
+  <tr>
+    <th>Type of Data<br></th>
+    <th>Number of Violent Images</th>
+    <th>Number of Non-Violent Images</th>
+    <th>Total Number of Images</th>
+  </tr>
+  <tr>
+    <td>Training</td>
+    <td>8091</td>
+    <td>9409</td>
+    <td>17500</td>
+  </tr>
+  <tr>
+    <td>Validation</td>
+    <td>1513</td>
+    <td>1506</td>
+    <td>3019</td>
+  </tr>
+  <tr>
+    <td>Test</td>
+    <td>1506</td>
+    <td>1501</td>
+    <td>3007</td>
+  </tr>
+</table>
+
 <table>
   <tr>
     <th>Type of Data<br></th>
