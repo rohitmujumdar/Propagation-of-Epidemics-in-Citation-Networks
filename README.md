@@ -1,1 +1,1 @@
-# cs6476-computervision-project
+# Propagation-of-Epidemics-in-Citation-Networks
