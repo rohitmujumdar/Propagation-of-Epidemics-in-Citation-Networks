@@ -34,7 +34,14 @@ article,
 aside,
 details,
 figcaption,
-figure,
+#images {
+    display: flex;
+    justify-content: center;
+}
+
+figure {
+    text-align: center;
+}
 footer,
 header,
 hgroup,
