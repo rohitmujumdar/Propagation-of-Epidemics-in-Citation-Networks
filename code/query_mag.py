@@ -4,7 +4,7 @@ import os
 from tqdm import tqdm
 
 cur_path = os.getcwd()
-file_path = os.path.relpath('..//data//', cur_path)
+file_path = os.path.relpath('..//data//paper_data_mag//', cur_path)
 
 headers = {
     # Request headers
@@ -22,11 +22,11 @@ def get_data(conf):
     file_name = 'MAG_' + conf.upper() + '.json'
     try:
         conn = http.client.HTTPSConnection('api.labs.cognitive.microsoft.com')
-        conn.request("GET", "/academic/v1.0/evaluate?expr=And(Composite(C.CN='"+conf+"'),Y>=2014,Pt='3')&%s" % params, "{body}", headers)
+        conn.request("GET", "/academic/v1.0/evaluate?expr=And(Composite(C.CN='"+conf+"'),Y>2017,Pt='3')&%s" % params, "{body}", headers)
         response = conn.getresponse()
         data = response.read()
         data_dict = json.loads(data)
-        with open(file_path+file_name, 'w') as f:
+        with open(file_path+"//"+file_name, 'w') as f:
             json.dump(data_dict, f, indent=4)
         conn.close()
     except Exception as e:
