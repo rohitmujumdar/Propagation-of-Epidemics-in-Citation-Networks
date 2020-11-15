@@ -46,10 +46,10 @@
     </li>
       <li><b>Estimating Idea Quality</b> : <p>We query openly available review data from OpenReview.net for papers accepted to ICLR in 2018-2020. We  compute the average rating of each paper by taking the mean of its three independent review scores.<p></li>
       <li><b>Devising a Prestige Metric</b> : <p> We still use the prestige metric devised by the current method, but we add more nuance to our metric prestige by factoring in other rankings driven more by reputation and assign them higher weightage. We devise our own university prestige metric by taking a weighted average of the prestige metric used in previous work, Geometric Mean Count (GMC) of papers published in the areas relevant to our task (CSRankings) and the Peer Assessment Score (PAS) used in US News Rankings.</p></li>
+      <li><b>Tracing Infections</b> : <p> We treat ICLR 2018 papers as patient-zero papers and walk down the path of of all the papers that cited the source directly or indirectly) until we reach all of its last descendants. We note the authors for the patient-zero papers and all the authors of the descendants of patient-zero.</li>
       <li><b>Preparing a Collaboration Network</b> : <p> We create a collaboration network of machine learning researchers by taking all papers published in top conferences between 2016-2020 and creating links between every pair of authors who published a paper together during that time period. </p>
     </li>
-<p>We use Convolutional Neural Networks (CNNs) to perform a supervised binary classification of images into these two categories. Specifically, we perform feature extraction on the images in our dataset using transfer learning from the following pre-trained CNNs to build the binary classifier.
-</p>
+      </ol>
 
 <h2>
 <a id="Results" class="anchor" href="#Results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
