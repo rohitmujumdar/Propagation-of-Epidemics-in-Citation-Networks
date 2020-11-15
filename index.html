@@ -32,12 +32,22 @@
       
 <h2>
 <a id="Project Summary" class="anchor" href="#Introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
-<p>Academic research should live or die by its own merits. However, human cognitive shortcuts have long believed to give undue advantage to particular institutions or researchers, sometimes blinding reviewers to errors of lack of rigor on their work. We investigate this imbalance by studying the spread of ideas across academic research networks using disease spread models adapted from epidemiology. We specifically focus on spread of ideas in the domain of Machine Learning (ML), a specialised area of research in Computer Science. We take the papers published in the year 2014 as our set of base “pathogens” and assess the network growth dynamics of idea spread amongst major ML conferences. We assess if ideas of the same calibre spread faster when originating from more prestigious institutions. We define data-centric measures for institutional prestige and idea quality and use both network-based simulation and statistical estimation to quantify how these factors affect idea propagation.</p>
+<p>Academic research should live or die by its own merits. However, human cognitive shortcuts have long believed to give undue advantage to particular institutions or researchers, sometimes blinding reviewers to errors of lack of rigor on their work. We investigate this imbalance by studying the spread of ideas across academic research networks using disease spread models adapted from epidemiology. </p>
+<p> We specifically focus on spread of ideas in the domain of Machine Learning (ML), a specialised area of research in Computer Science. We take the papers published in the year 2014 as our set of base “pathogens” and assess the network growth dynamics of idea spread amongst major ML conferences. We assess if ideas of the same calibre spread faster when originating from more prestigious institutions. We define data-centric measures for institutional prestige and idea quality and use both network-based simulation and statistical estimation to quantify how these factors affect idea propagation.</p>
 
 
 <h2>
 <a id="Approach" class="anchor" href="#Approach" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach</h2>
-<p>We approach Content Moderation as a binary classification problem with 2 broad categories - offensive images and non-offensive images. </p>
+    <p>We approach our problem with the following steps:</p>
+    <ol>
+      <li><b>Analogies with Epidemiology</b> : <p>We base our work on analogies with concepts and models in epidemiology, modelling the spread of ideas on propagation of epidemics of infectious diseases. This involves drawing parallels between concepts and events in the spread of infectious diseases and spread of research in academia.</p>
+    </li>
+      <li><b>Building a Citation and Infection Network</b> : <p> We query the Microsoft Academic Graph to extract data for papers published in 2018 and beyond for the major ML conferences. We create a network ( a directed graph) of all papers citing one another. Using this citation network, from each pair of adjacent nodes, we select those edges, which satisfy the certain conditions for infection.</p>
+    </li>
+      <li><b>Estimating Idea Quality</b> : <p>We query openly available review data from OpenReview.net for papers accepted to ICLR in 2018-2020. We  compute the average rating of each paper by taking the mean of its three independent review scores.<p></li>
+      <li><b>Devising a Prestige Metric</b> : <p> We still use the prestige metric devised by the current method, but we add more nuance to our metric prestige by factoring in other rankings driven more by reputation and assign them higher weightage. We devise our own university prestige metric by taking a weighted average of the prestige metric used in previous work, Geometric Mean Count (GMC) of papers published in the areas relevant to our task (CSRankings) and the Peer Assessment Score (PAS) used in US News Rankings.</p></li>
+      <li><b>Preparing a Collaboration Network</b> : <p> We create a collaboration network of machine learning researchers by taking all papers published in top conferences between 2016-2020 and creating links between every pair of authors who published a paper together during that time period. </p>
+    </li>
 <p>We use Convolutional Neural Networks (CNNs) to perform a supervised binary classification of images into these two categories. Specifically, we perform feature extraction on the images in our dataset using transfer learning from the following pre-trained CNNs to build the binary classifier.
 </p>
 
