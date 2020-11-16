@@ -33,30 +33,35 @@
 <h2>
 <a id="Project Summary" class="anchor" href="#Introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction</h2>
 <p>Academic research should live or die by its own merits. However, human cognitive shortcuts have long believed to give undue advantage to particular institutions or researchers, sometimes blinding reviewers to errors of lack of rigor on their work. We investigate this imbalance by studying the spread of ideas across academic research networks using disease spread models adapted from epidemiology. </p>
-<p> We specifically focus on spread of ideas in the domain of Machine Learning (ML), a specialised area of research in Computer Science. We take the papers published in the year 2014 as our set of base “pathogens” and assess the network growth dynamics of idea spread amongst major ML conferences. We assess if ideas of the same calibre spread faster when originating from more prestigious institutions. We define data-centric measures for institutional prestige and idea quality and use both network-based simulation and statistical estimation to quantify how these factors affect idea propagation.</p>
-
+<p> We specifically focus on spread of ideas in the domain of Machine Learning (ML), a specialised area of research in Computer Science. We take the papers published in the year 2014 as our set of base “pathogens” and assess the network growth dynamics of idea spread amongst major ML conferences.<p>
+<p> We assess if idea spread is driven by connectivity amongst original authors or the explicit prestige of their institution uisng an epidemiological model to simulate the spread of an idea on our collaboration network. </p>
 
 <h2>
-<a id="Approach" class="anchor" href="#Approach" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach</h2>
+<a id="Methoolody Summary" class="anchor" href="#Approach" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Approach</h2>
     <p>We approach our problem with the following steps:</p>
     <ol>
-      <li><b>Analogies with Epidemiology</b> : <p>We base our work on analogies with concepts and models in epidemiology, modelling the spread of ideas on propagation of epidemics of infectious diseases. This involves drawing parallels between concepts and events in the spread of infectious diseases and spread of research in academia.</p>
+      <li><b>Analogies with Epidemiology</b> : We base our work on analogies with concepts and models in epidemiology, modelling the spread of ideas on propagation of epidemics of infectious diseases. This involves drawing parallels between concepts and events in the spread of infectious diseases and spread of research in academia.</p>
     </li>
-      <li><b>Building a Citation and Infection Network</b> : <p> We query the Microsoft Academic Graph to extract data for papers published in 2018 and beyond for the major ML conferences. We create a network ( a directed graph) of all papers citing one another. Using this citation network, from each pair of adjacent nodes, we select those edges, which satisfy the certain conditions for infection.</p>
+      <li><b>Building a Citation and Infection Network</b> : We query the Microsoft Academic Graph to extract data for papers published in 2018 and beyond for the major ML conferences. We create a network ( a directed graph) of all papers citing one another. Using this citation network, from each pair of adjacent nodes, we select those edges, which satisfy the certain conditions for infection.</p>
     </li>
-      <li><b>Estimating Idea Quality</b> : <p>We query openly available review data from OpenReview.net for papers accepted to ICLR in 2018-2020. We  compute the average rating of each paper by taking the mean of its three independent review scores.<p></li>
-      <li><b>Devising a Prestige Metric</b> : <p> We still use the prestige metric devised by the current method, but we add more nuance to our metric prestige by factoring in other rankings driven more by reputation and assign them higher weightage. We devise our own university prestige metric by taking a weighted average of the prestige metric used in previous work, Geometric Mean Count (GMC) of papers published in the areas relevant to our task (CSRankings) and the Peer Assessment Score (PAS) used in US News Rankings.</p></li>
-      <li><b>Tracing Infections</b> : <p> We treat ICLR 2018 papers as patient-zero papers and walk down the path of of all the papers that cited the source directly or indirectly) until we reach all of its last descendants. We note the authors for the patient-zero papers and all the authors of the descendants of patient-zero.</li>
-      <li><b>Preparing a Collaboration Network</b> : <p> We create a collaboration network of machine learning researchers by taking all papers published in top conferences between 2016-2020 and creating links between every pair of authors who published a paper together during that time period. </p>
+      <li><b>Estimating Idea Quality</b> : We query openly available review data from OpenReview.net for papers accepted to ICLR in 2018-2020. We  compute the average rating of each paper by taking the mean of its three independent review scores.<p></li>
+      <li><b>Devising a Prestige Metric</b> : We still use the prestige metric devised by the current method, but we add more nuance to our metric prestige by factoring in other rankings driven more by reputation and assign them higher weightage. We devise our own university prestige metric by taking a weighted average of the prestige metric used in previous work, Geometric Mean Count (GMC) of papers published in the areas relevant to our task (CSRankings) and the Peer Assessment Score (PAS) used in US News Rankings.</p></li>
+      <li><b>Tracing Infections</b> : We treat ICLR 2018 papers as patient-zero papers and walk down the path of of all the papers that cited the source directly or indirectly) until we reach all of its last descendants. We note the authors for the patient-zero papers and all the authors of the descendants of patient-zero.</li>
+      <li><b>Preparing a Collaboration Network</b> : We create a collaboration network of machine learning researchers by taking all papers published in top conferences between 2016-2020 and creating links between every pair of authors who published a paper together during that time period. </p>
     </li>
+      <li><b>Simulating Epidemics : </b> In order to evaluate if idea spread is tied to the connectivity and collaborations of the original authors rather than the explicit prestige of their institution, we simulate the spread of an idea on our collaboration network using the Susceptible - Infected - Recovered (SIR) model of epidemics.</li>
       </ol>
 
 <h2>
-<a id="Results" class="anchor" href="#Results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
-<p>We trained our dataset using the four different classifiers mentioned above, all of them CNN architectures. </p>
-<p>We split the data set into 3 sets - train, validation and test. The classifiers are trained using a transfer learning approach where we extract features from pre-trained convnets and modify the final fully-connected layer to suit our data. The transfer learning is performed on  a ConvNet pretrained on ImageNet and backprop is done on only the final, modified layer and the weights from the pretrained layers are kept as is. Thus the rest of the ConvNet as a fixed feature extractor for the new dataset. </p>
-<p>Details about the data used: (Images are sampled from the videos from <a href="#ref2">[4]</a> via an offline process)</p>
-<table>
+<a id="Results Summary" class="anchor" href="#Results" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results</h2>
+<p>After investigating the mechanisms that drive idea propagation, we discover that neither the prestige of an institution, nor the rating given by peer reviewers predicts whether an academic idea will spread. We infer that idea spreading could be egocentric - with focus more on individual researchers than the institutions at which they work. Thus, it appears to be driven by how well connected the researchers themselves are, which can lead to uptake by collaborators and thus better spread and name recognition.</p>
+<p>This conlcusion is drawn from the following multiple observations:<p>
+    <ol>
+      <li>Highly ranked universities have more connected researchers, perhaps driven by the fact that they have more research faculty in general.</li>
+      <li>Ideas of extremely high or low, caliber infect fewer researchers, suggesting most researchers get infected with good or moderate ideas.</li>
+      <li>Strong positive correlation between simulated epidemic size and actual number of infected authors, suggesting that local collaboration network structure is an important vehicle for paper spread</li>
+      <li>No significant relationship between either prestige or paper rating aftercontrolling for simulated epidemic size, suggesting that the local structure of collaborations surrounding paper authors are the most important factors influencing their spread </li>
+    </ol>
   
 <h2>
 <a id="Resources" class="anchor" href="#Resources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resources</h2>
