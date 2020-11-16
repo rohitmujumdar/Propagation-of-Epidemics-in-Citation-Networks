@@ -19,5 +19,14 @@ We got our data from the Microsoft Academic Graph. One can read more about how t
 
 4. **Creating the citation and infection network**:
 
-The code to create the citation netwrok and its infection network are in ```prestige_calculation.ipynb```. These have been pickled and stored in ```\data\networks\citation_network.pkl``` and ```\data\networks\citation_infection_network```. 
+The code to create the citation network and its infection network are in ```prestige_calculation.ipynb```. These have been pickled and stored in ```\data\networks\citation_network.pkl``` and ```\data\networks\citation_infection_network```. 
  
+5. **Creating the patient zero paper data**:
+
+The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resultign dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
+
+6. **Visualzing Netowrk Topology:**
+
+
+
+7. **Simulating Epidemics**
