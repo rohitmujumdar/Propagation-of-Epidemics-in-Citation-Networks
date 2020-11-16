@@ -1,9 +1,9 @@
 # Propagation-of-Epidemics-in-Citation-Networks
 
 This project was done as a part of the course requirement of CS 8803 : Data Science for Epidemiology (Fall 2020).
-There are two folders in this package. The DOC folder contains a report and a presentation for the  project. The SRC folder is composed of a code and data folder. 
+There are two folders in this package. The ```DOC``` folder contains a report and a presentation for the  project. The ```SRC``` folder is composed of a code and data folder. 
 
-The codes of this project are written in Python3. The packages needed to run this project can be installed by running ```pip3 install -r requirements.txt``` on the ```requirements.txt``` file in SRC. To use this project and run a demo, please perform the following steps in te given order. Each step is articulated with its context, goal
+The codes of this project are written in Python3. Henceforth, all the references to folders will be within the ```SRC``` folder. The packages needed to run this project can be installed by running ```pip3 install -r requirements.txt``` on the ```requirements.txt``` file in ```SRC```shou. To use this project and run a demo, please perform the following steps in te given order. Each step is articulated with its context, goal
 and data requirment. 
 
 1. **Preparing Prestige Data**: 
@@ -26,8 +26,11 @@ The code to create the citation network and its infection network are in ```pres
 
 The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resultign dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
 
-6. **Visualizing Network Topology:**
+6. **Creating researcher collaboration network**
+
+The notebook ```
+7. **Visualizing Network Topology:**
 
 
 
-7. **Simulating Epidemics**
+8. **Simulating Epidemics**
