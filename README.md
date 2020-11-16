@@ -25,7 +25,7 @@ The code to create the citation network and its infection network are in ```pres
 
 The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resultign dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
 
-6. **Visualzing Netowrk Topology:**
+6. **Visualizing Network Topology:**
 
 
 
