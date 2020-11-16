@@ -15,7 +15,7 @@ from fuzzywuzzy import fuzz, process
 import string
 
 # Path to ICLR data
-filepath = "/nethome/dkartchner3/school/epi/citation-networks-idea-propogation/data/mag_papers/iclr.json"
+filepath = "../data/mag_papers/iclr.json"
 papers = json.load(open(filepath, 'r'))
 
 # Table to remove punctuation
@@ -51,7 +51,7 @@ accepted_titles = []
 accepted_authors = []
 reviews = []
 
-with open("../../data/paper_quality/iclr2018_metadata.jsonl", 'r') as f:
+with open("../data/paper_quality/iclr2018_metadata.jsonl", 'r') as f:
     for line in f:
         # Load paper
         paper = json.loads(line)
@@ -108,4 +108,4 @@ matches = pd.DataFrame([(p['title_match_id'],
 
 # Throw away papers with no affiliated author and save results
 matches = matches[matches.afids.map(lambda x: len(x)) > 0].reset_index(drop=True)
-matches.to_pickle('../../data/paper_quality/iclr_matched_papers.pkl')
+matches.to_pickle('../data/paper_quality/iclr_matched_papers.pkl')
