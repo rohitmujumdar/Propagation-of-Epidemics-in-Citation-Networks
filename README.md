@@ -12,7 +12,7 @@ The raw CSV files for US News Rankings, CS Rankings and the faculty-hiring drive
 
 2. **Preparing Idea Quality Data**:
 
-ICLR data is stored in ```\data\mag_papers\iclr.json```. The script to process these and get the papers that match the ones in our MAG data is ```code\python_scripts\iclr_matches.py```. The matched papers are pickled and stored for convenience in ```data\paper_quality\iclr_matched_papers.pkl```. The metadata for each paper of ICLR 2018 is stored in ```data\paper_quality\iclr2018_metadata.jsonl``` as a jsonlines file.
+ICLR data is stored in ```\data\mag_papers\iclr.json```. The script to process these and get the papers that match the ones in our MAG data is ```code\iclr_matches.py```. The matched papers are pickled and stored for convenience in ```data\paper_quality\iclr_matched_papers.pkl```. The metadata for each paper of ICLR 2018 is stored in ```data\paper_quality\iclr2018_metadata.jsonl``` as a jsonlines file.
 
 3. **Collecting and process MAG data**: 
 
