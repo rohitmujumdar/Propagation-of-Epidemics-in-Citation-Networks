@@ -3,7 +3,8 @@
 This project was done as a part of the course requirement of CS 8803 : Data Science for Epidemiology (Fall 2020).
 There are two folders in this package. The DOC folder contains a report and a presentation for the  project. The SRC folder is composed of a code and data folder. 
 
-The codes of this project are written in Python3. The packages needed to run this project can be installed by running ```pip3 install -r requirements.txt``` on the ```requirements.txt``` file in SRC. 
+The codes of this project are written in Python3. The packages needed to run this project can be installed by running ```pip3 install -r requirements.txt``` on the ```requirements.txt``` file in SRC. To use this project and run a demo, please perform the following steps in te given order. Each step is articulated with its context, goal
+and data requirment. 
 
 1. **Preparing Prestige Data**: 
 
