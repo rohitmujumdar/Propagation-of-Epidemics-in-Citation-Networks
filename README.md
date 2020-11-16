@@ -24,13 +24,12 @@ The code to create the citation network and its infection network are in ```pres
  
 5. **Creating the patient zero paper data**:
 
-The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resultign dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
+The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resulting dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
 
-6. **Creating researcher collaboration network**
+6. **Creating researcher collaboration network and visualizing network topology**
 
-The notebook ```
-7. **Visualizing Network Topology:**
+The notebook ```collaboration_network.ipynb``` generates our collaboration network of researchers from paper collaborations, then calculates degree and betweenness centrality measures of this network. It also generates plots to help understand the centralities. Pickles of several centrality measures that were assessed in this notebook are stored in ```\data\nodes\author_centrality.pkl``` and ```\data\nodes\author_list.pkl```. This notebook also has plot to visualize several centrality plots.
 
+7. **Simulating Epidemics**
 
-
-8. **Simulating Epidemics**
+The simulation of an SIR model for our network is done in thhe notebook ```network_simulation.ipynb```
