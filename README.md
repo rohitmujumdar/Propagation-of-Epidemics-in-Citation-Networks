@@ -1,14 +1,13 @@
 # Propagation-of-Epidemics-in-Citation-Networks
 
 This project was done as a part of the course requirement of CS 8803 : Data Science for Epidemiology (Fall 2020).
-There are two folders in this package. The DOC folder contains a report and a presentation for the  project. The SRC folder is composed of a code and data folder. 
+There are two folders in this package. The ```DOC``` folder contains a report and a presentation for the  project. The ```SRC``` folder is composed of a code and data folder. 
 
-The codes of this project are written in Python3. The packages needed to run this project can be installed by running ```pip3 install -r requirements.txt``` on the ```requirements.txt``` file in SRC. To use this project and run a demo, please perform the following steps in te given order. Each step is articulated with its context, goal
-and data requirment. 
+The codes of this project are written in Python3. Henceforth, all the references to folders will be within the ```SRC``` folder. The packages needed to run this project can be installed by running ```pip3 install -r requirements.txt``` on the ```requirements.txt``` file in ```SRC```shou. To use this project and run a demo, please perform the following steps in the given order. Each step is articulated with its context, goal and data requirment. Each step contains either a notebook or a script which needs to be only run to implement that step. 
 
 1. **Preparing Prestige Data**: 
 
-The raw CSV files for US News Rankings, CS Rankings and the faculty-hiring drive prestige are in ```data\prestige\```. The notebook ```prestige_calculation.ipynb``` contians code to compute prestige scores for all universties and can be run to do so. The resulting dataframe is pickled and stored for convenience in ```data\prestige\``` as ```prestige_data.pkl```. 
+The raw CSV files for US News Rankings, CS Rankings and the faculty-hiring drive prestige are in ```data\prestige\```. The notebook ```prestige_calculation.ipynb``` contians code to compute prestige scores for all universties. The resulting dataframe is pickled and stored for convenience in ```data\prestige\``` as ```prestige_data.pkl```. 
 
 2. **Preparing Idea Quality Data**:
 
@@ -24,10 +23,12 @@ The code to create the citation network and its infection network are in ```pres
  
 5. **Creating the patient zero paper data**:
 
-The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resultign dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
+The notebook ```code\patient_zero.ipynb``` contains code to process, aggregate and  visualise data for the infection sources and can be run to do so. The resulting dataframe is pickled and stored in ```\data\patient_zero_data.pkl```.
 
-6. **Visualizing Network Topology:**
+6. **Creating researcher collaboration network and visualizing network topology**
 
-
+The notebook ```collaboration_network.ipynb``` generates our collaboration network of researchers from paper collaborations, then calculates degree and betweenness centrality measures of this network. It also generates plots to help understand the centralities. Pickles of several centrality measures that were assessed in this notebook are stored in ```\data\nodes\author_centrality.pkl``` and ```\data\nodes\author_list.pkl```. This notebook also has plot to visualize several centrality plots.
 
 7. **Simulating Epidemics**
+
+The simulation of an SIR model for our network is done in thhe notebook ```network_simulation.ipynb```. It also contains plots to visualize the simulation results correlations.
